@@ -1,4 +1,4 @@
-# What The Hack – Student&#39;s Guide
+# What The Hack – Student's Guide
 
 ## Challenge Set 0: Pre-requisites - Ready, Set, GO!
 
@@ -19,7 +19,7 @@
   -
     - Update to the latest
     - Must be at least version 2.0.42
-    - **NOTE:** If you&#39;re running into issues running Azure CLI command on Windows, Disable Global Protect (VPN)
+    - **NOTE:** If you're running into issues running Azure CLI command on Windows, Disable Global Protect (VPN)
   - **Option 2**
     - Azure Cloud Shell
 
@@ -75,25 +75,25 @@
 - We have not exposed the API app to the external world. Therefore, to test it you need to:
   - Figure out how to get a bash shell on the API app pod just deployed.
     - kubectl -it exec content-api-b4cdd6485-fqpb7 -- /bin/bash
-  - Curl the url of the &quot;/speakers&quot; end point.
+  - Curl the url of the "/speakers" end point.
     - curl http://localhost:3001/speakers
   - You should get a huge json document in response.
 - Deploy the **Web app** from the command line using kubectl and YAML files
   - **NOTE** : Sample YAML files to get you started can be found in the Files section of the General channel in Teams.
     - **Another options, which is really useful to use is to dump the content-api deployment into a file and edit that file:**
-      - kubectl get deploy content-api -o yaml \&gt;\&gt; content-web.yaml
+      - kubectl get deploy content-api -o yaml >> content-web.yaml
   - **NOTE** : The Web app expects to have an environment variable pointing to the URL of the API app named:
     - **CONTENT\_API\_URL**
   - Create a deployment yaml file for the Web app using the specs from the API app, except for:
     - Port and Target Port: 3000
   - Create a service yaml file to go with the deployment
-    - **Hint** : Not all &quot;types&quot; of Services are exposed to the outside world
+    - **Hint** : Not all "types" of Services are exposed to the outside world
   - **NOTE:** Applying your YAML files with kubectl can be done over and over as you update the YAML file. Only the delta will be changed.
   - **NOTE** : The Kubernetes documentation site is your friend. The full YAML specs can be found there: [https://kubernetes.io/docs](https://kubernetes.io/docs)
 - Find out the External IP that was assigned to your service. You can use kubectl or the dashboard for this.
-- Test the application by browsing to the Web app&#39;s external IP and port and seeing the front page come up.
+- Test the application by browsing to the Web app's external IP and port and seeing the front page come up.
   - Ensure that you see a list of both speakers and sessions on their respective pages.
-  - If you don&#39;t see the lists, then the web app is not able to communicate with the API app.
+  - If you don't see the lists, then the web app is not able to communicate with the API app.
 
 # Challenge Set 4: Scale and High Availability
 
@@ -108,9 +108,9 @@
   -  There are two ways to fix this: increase the size of your cluster or decrease the resources needed by the deployments.
 - To fully deploy the application, you will need 4 instances of the API app running and 2 instances of the Web app.
   - ** Hint:** If you fixed the issue above correctly, you should be able to do this with the resources of your original cluster.
-- When your cluster is fully deployed, browse to the &quot;/stats.html&quot; page of the web application.
-  -  Keep refreshing to see the API app&#39;s host name keep changing between the deployed instances.
-- Scale the API app back down to 1, and immediately keep refreshing the &quot;/stats.html&quot; page.
+- When your cluster is fully deployed, browse to the "/stats.html" page of the web application.
+  -  Keep refreshing to see the API app's host name keep changing between the deployed instances.
+- Scale the API app back down to 1, and immediately keep refreshing the "/stats.html" page.
   -  You will notice that without any downtime it now directs traffic only to the single instance left.
 
 # Challenge Set 5: Deploy MongoDB to AKS
@@ -120,10 +120,10 @@
 - Deploy a MongoDB container in a pod for v2 of the FabMedical app
 - **Hint:** Check out the Docker Hub container registry and see what you can find.
 - Confirm it is running with:
-  - **kubectl exec -it \&lt;mongo pod name\&gt; -- mongo &quot;--version&quot;**
+  - kubectl exec -it <mongo pod name> -- mongo "--version"
 - You will also need an initializer container available on Docker Hub at:
   - **whatthehackmsft/content-init**
-  - Use the content-init &quot;Job&quot; yaml provided to run the initialization of MongoDB for our new version of the app.
+  - Use the content-init "Job" yaml provided to run the initialization of MongoDB for our new version of the app.
 
 \*\*\*Bonus: Try to deploy MongoDB as a StatefulSet instead of a standard Deployment
 
@@ -139,24 +139,24 @@
     - whatthehackmsft/content-web:v2
     - whatthehackmsft/content-api:v2
 - Perform a rolling update of the Web app on your cluster to the new version two of content-web
-  -  You&#39;ll be doing this from the command-line with a kubectl command (remember, Kubernetes docs are your friend!)
+  -  You'll be doing this from the command-line with a kubectl command (remember, Kubernetes docs are your friend!)
   -  In the Kubernetes dashboard on the Pods page, you should be able to see new pods with the new version come online and the old pods terminate
     - You can also do this by listing the pods with kubectl.
-  -  At the same time, hit the front page to see when you&#39;re on the new version by refreshing constantly until you see the conference dates updated to 2019.
+  -  At the same time, hit the front page to see when you're on the new version by refreshing constantly until you see the conference dates updated to 2019.
 - Now roll back this update.
   -  Again, this is done from the command-line using a (different) kubectl command.
   -  Confirm that we are back to the original version of the app by checking that the conference dates are back to 2017.
 - Perform the update again, this time using the blue/green deployment methodology.
   -  You will need a separate deployment file using different tags.
-  -  Cut over is done by modifying the app&#39;s service to point to this new deployment.
+  -  Cut over is done by modifying the app's service to point to this new deployment.
 
 # Challenge Set 7: Storage
 
 ### Challenges:
 
 - Make sure that you are using the latest version of the Fabmedical container images:
-  - ** whatthehackmsft ****/content-api:v2**
-  - ** whatthehackmsft ****/content-web:v2**
+  - **whatthehackmsft/content-api:v2**
+  - **whatthehackmsft/content-web:v2**
 - Destroy the previous MongoDB pod created in the Challenge Set 6.
 - In this challenge you will provision the MongoDB pod with a persisted disk volume.
 - Create two Azure data disks (one for the MongoDB configuration and another one for data)
@@ -165,7 +165,7 @@
   - ** NOTE**: You can use the same MongoDB container image from Docker Hub that you used in a previous challenge.
 - Verify that MongoDB is working fine by connecting to the corresponding MongoDB Pod in the interactive mode. Make sure that the disks are associated correctly (Highlighted below)
 
-- ** kubectl exec -it \&lt;mongo-db pod name\&gt; bash**
+- ** kubectl exec -it <mongo-db pod name> bash**
 
 root@mongo-db678745655b-f82vj:/# **df -Th**
 Filesystem     Type     Size  Used Avail Use% Mounted on
@@ -189,23 +189,23 @@ MongoDB server version: 3.6.1
   - ** NOTE**: If the AKS cluster was created using the default Service Principle then we must grant it permission to pull images from the ACR.
     - **Hint** : Have a look here: [https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-aks](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-aks))
 
-- Make sure that the &quot;contentdb&quot; database is populated by connecting to the MongoDB pod with an interactive terminal and verify the database collections.
+- Make sure that the "contentdb" database is populated by connecting to the MongoDB pod with an interactive terminal and verify the database collections.
 
 - root@mongo-db678745655b-f82vj:/# **mongo**
 MongoDB shell version v3.6.1
 connecting to: mongodb://127.0.0.1:27017
 MongoDB server version: 3.6.1
-\&gt;
-\&gt;  **show dbs**
+>
+>  **show dbs**
 admin       0.000GB
 config      0.000GB
 contentdb   0.000GB
 local       0.000GB
 
 - Destroy the MongoDB pod to prove that the data persisting to the disk
-  - ** kubectl delete deployment \&lt;mongo-db-deployment\&gt;**
+  - ** kubectl delete deployment <mongo-db-deployment>**
 - Recreate the Mongo Db Pod
-  - ** kubectl **** apply **** -f \&lt;mongo-db-deployment\&gt;**
+  - ** kubectl **** apply **** -f <mongo-db-deployment>**
 - Once the Pod is created, verify that data is persisted to the Azure disks by following the previous MongoDB verification step.
 - Update the MongoDB connection string in the content-api deployment YAML and deploy it, eg:
   -  env:
@@ -262,14 +262,14 @@ local       0.000GB
 
 ### Challenges:
 
-- Find the logs for your application&#39;s containers
+- Find the logs for your application's containers
   - Using the Kubernetes Dashboard
   - Using kubectl
   - Notice how you can check the logs of any of your pods individually.
 - Start a bash shell into one of the containers running on a pod and check the list of running processes
 - Find out if your pods had any errors.
 - Azure Monitor:
-  - Enable &quot;Azure Monitor for Containers&quot; on the AKS cluster
+  - Enable "Azure Monitor for Containers" on the AKS cluster
   - Show a screenshot of CPU and memory utilization of all nodes
   - Show a screenshot displaying logs from the frontend and backend containers
 - Kibana:
