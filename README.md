@@ -34,9 +34,9 @@
 - Deploy an Azure Container Registry (ACR)
 - Ensure your ACR has proper permissions and credentials set up
 - Build &amp; Push your Docker containers to the ACR using ACR builder cli
-  - [All code](https://github.com/evillgenius75/fabmedicalapp) for Fab Medical App
-  - [Content API v1](https://github.com/evillgenius75/fabmedicalapp/tree/master/content-api)
-  - [Content Web v1](https://github.com/evillgenius75/fabmedicalapp/tree/master/content-web)
+  - [All code](https://github.com/feranto/WhatTheHack-Student/tree/master/FabMedicalApp) for Fab Medical App
+  - [Content API v1](https://github.com/feranto/WhatTheHack-Student/tree/master/FabMedicalApp/content-api)
+  - [Content Web v1](https://github.com/feranto/WhatTheHack-Student/tree/master/FabMedicalApp/content-web)
 - List all images in your ACR
 
 # Challenge Set 2: Introduction to Kubernetes
@@ -133,8 +133,8 @@
 
 - You can use the steps from challenge one to build and push v2 images to your ACR or use the staged updated versions of the apps on Docker Hub with id and version:
   - ** For building in ACR:**
-    - [Content API v2](https://github.com/evillgenius75/fabmedicalapp/tree/master/content-api-v2)
-    - [Content Web v2](https://github.com/evillgenius75/fabmedicalapp/tree/master/content-web-v2)
+    - [Content API v2](https://github.com/feranto/WhatTheHack-Student/tree/master/FabMedicalApp/content-api-v2)
+    - [Content Web v2](https://github.com/feranto/WhatTheHack-Student/tree/master/FabMedicalApp/content-web-v2)
   - ** Docker hub**
     - whatthehackmsft/content-web:v2
     - whatthehackmsft/content-api:v2
