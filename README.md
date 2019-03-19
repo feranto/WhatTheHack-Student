@@ -33,7 +33,7 @@
 
 - Deploy an Azure Container Registry (ACR)
 - Ensure your ACR has proper permissions and credentials set up
-- Build &amp; Push your Docker containers to the ACR using ACR builder cli
+- Build & Push your Docker containers to the ACR using ACR builder cli
   - [All code](https://github.com/feranto/WhatTheHack-Student/tree/master/FabMedicalApp) for Fab Medical App
   - [Content API v1](https://github.com/feranto/WhatTheHack-Student/tree/master/FabMedicalApp/content-api)
   - [Content Web v1](https://github.com/feranto/WhatTheHack-Student/tree/master/FabMedicalApp/content-web)
@@ -70,7 +70,7 @@
   - CPU: 0.5
   - Memory: 128MB
 
-**\*\*NOTE: You must use either kubectl or azure cli on your local laptop to access the Kubernetes dashboard. This will not work in the Azure Cloud Shell correctly today.**
+**NOTE: You must use either kubectl or azure cli on your local laptop to access the Kubernetes dashboard. This will not work in the Azure Cloud Shell correctly today.**
 
 - We have not exposed the API app to the external world. Therefore, to test it you need to:
   - Figure out how to get a bash shell on the API app pod just deployed.
@@ -107,7 +107,7 @@
   -  You will find an error occurs because the cluster does not have enough resources to support that many instances.
   -  There are two ways to fix this: increase the size of your cluster or decrease the resources needed by the deployments.
 - To fully deploy the application, you will need 4 instances of the API app running and 2 instances of the Web app.
-  - ** Hint:** If you fixed the issue above correctly, you should be able to do this with the resources of your original cluster.
+  - **Hint:** If you fixed the issue above correctly, you should be able to do this with the resources of your original cluster.
 - When your cluster is fully deployed, browse to the "/stats.html" page of the web application.
   -  Keep refreshing to see the API app's host name keep changing between the deployed instances.
 - Scale the API app back down to 1, and immediately keep refreshing the "/stats.html" page.
@@ -132,10 +132,10 @@
 ### Challenges:
 
 - You can use the steps from challenge one to build and push v2 images to your ACR or use the staged updated versions of the apps on Docker Hub with id and version:
-  - ** For building in ACR:**
+  - **For building in ACR:**
     - [Content API v2](https://github.com/feranto/WhatTheHack-Student/tree/master/FabMedicalApp/content-api-v2)
     - [Content Web v2](https://github.com/feranto/WhatTheHack-Student/tree/master/FabMedicalApp/content-web-v2)
-  - ** Docker hub**
+  - **Docker hub**
     - whatthehackmsft/content-web:v2
     - whatthehackmsft/content-api:v2
 - Perform a rolling update of the Web app on your cluster to the new version two of content-web
@@ -162,10 +162,10 @@
 - Create two Azure data disks (one for the MongoDB configuration and another one for data)
 - Create a deployment yaml for MongoDB to be deployed with the necessary configuration for using the volume as an Azure Data Disk.
   -  Find the reference template in the Teams Files section: **tempate-mongodb-deploy.yml**
-  - ** NOTE**: You can use the same MongoDB container image from Docker Hub that you used in a previous challenge.
+  - **NOTE**: You can use the same MongoDB container image from Docker Hub that you used in a previous challenge.
 - Verify that MongoDB is working fine by connecting to the corresponding MongoDB Pod in the interactive mode. Make sure that the disks are associated correctly (Highlighted below)
 
-- ** kubectl exec -it <mongo-db pod name> bash**
+- **kubectl exec -it <mongo-db pod name> bash**
 
 root@mongo-db678745655b-f82vj:/# **df -Th**
 Filesystem     Type     Size  Used Avail Use% Mounted on
@@ -184,9 +184,9 @@ MongoDB shell version v3.6.1
 connecting to: mongodb://127.0.0.1:27017
 MongoDB server version: 3.6.1
 
-- Initialize sample content (Speakers &amp; Sessions data) in the mongo DB by running the content\_init nodeJS application as a Kubernetes Job. Reference template is can be found in the Files area in Teams, called: **template-content-init-deploy.yml**
+- Initialize sample content (Speakers & Sessions data) in the mongo DB by running the content\_init nodeJS application as a Kubernetes Job. Reference template is can be found in the Files area in Teams, called: **template-content-init-deploy.yml**
   -  Logs for content-init will provide the detailed logs showing whether it was able to successfully connect and add the contents to the MongoDB. You can use the Kubernetes dashboard or kubectl to check the logs.
-  - ** NOTE**: If the AKS cluster was created using the default Service Principle then we must grant it permission to pull images from the ACR.
+  - **NOTE**: If the AKS cluster was created using the default Service Principle then we must grant it permission to pull images from the ACR.
     - **Hint** : Have a look here: [https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-aks](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-aks))
 
 - Make sure that the "contentdb" database is populated by connecting to the MongoDB pod with an interactive terminal and verify the database collections.
@@ -203,9 +203,9 @@ contentdb   0.000GB
 local       0.000GB
 
 - Destroy the MongoDB pod to prove that the data persisting to the disk
-  - ** kubectl delete deployment <mongo-db-deployment>**
+  - **kubectl delete deployment <mongo-db-deployment>**
 - Recreate the Mongo Db Pod
-  - ** kubectl **** apply **** -f <mongo-db-deployment>**
+  - **kubectl  apply  -f <mongo-db-deployment>**
 - Once the Pod is created, verify that data is persisted to the Azure disks by following the previous MongoDB verification step.
 - Update the MongoDB connection string in the content-api deployment YAML and deploy it, eg:
   -  env:
@@ -253,10 +253,10 @@ local       0.000GB
 - Copy the AKS cluster DNS host name from Azure Portal
 - Deploy the content-web service and Ingress Controller using the HTTP Application Routing Add on feature.
   -  The reference template can be found in the Files section in Teams: template-web-ingress-deploy.
-  -  Change the ACR &amp; AKS DNS Name to match yours.
+  -  Change the ACR & AKS DNS Name to match yours.
 - Verify the DNS records are created, and if so, access the application using the DNS name, e.g http://fabmed.[YOUR\_AKS\_DNS\_ID].[REGION].aksapp.io
 
-\*\*\*BONUS: Use a Helm Chart to deploy nginx Ingress Controller in an HA configuration
+**BONUS: Use a Helm Chart to deploy nginx Ingress Controller in an HA configuration**
 
 # Challenge Set 10: Operations and Monitoring
 
