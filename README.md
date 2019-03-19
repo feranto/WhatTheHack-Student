@@ -2,7 +2,7 @@
 
 # Challenge Set 0: Pre-requisites - Ready, Set, GO!
 
-## Challenges:
+### Challenges:
 
 - Make sure that you have joined the Teams group for this track. The first person on your team at your table should create a new channel in this Team with your team name.
 
@@ -29,7 +29,7 @@
 
 ## Challenge Set 1: Azure Container Registry
 
-## Challenges:
+### Challenges:
 
 - Deploy an Azure Container Registry (ACR)
 - Ensure your ACR has proper permissions and credentials set up
@@ -41,7 +41,7 @@
 
 # Challenge Set 2: Introduction to Kubernetes
 
-## Challenges:
+### Challenges:
 
 - Install the Kubernetes command line tool (kubectl).
   - **Hint** : This can be done easily with the Azure CLI
@@ -54,7 +54,7 @@
 
 # Challenge Set 3: Your First Deployment
 
-## Challenges:
+### Challenges:
 
 - Give AKS Access to your ACR using Service Principal Authentication
 
@@ -97,25 +97,25 @@
 
 # Challenge Set 4: Scale and High Availability
 
-## Challenges:
+### Challenges:
 
 - Scale the Web app to 2 instances
-  - **oo** This should be done by modifying the YAML file for the Web app and re-deploying it.
+  -  This should be done by modifying the YAML file for the Web app and re-deploying it.
 - Scale the API app to 4 instances
-  - **oo** This should be done through the Kubernetes dashboard or with kubectl so you can highlight the difference between imperative change and declarative change 4
+  -  This should be done through the Kubernetes dashboard or with kubectl so you can highlight the difference between imperative change and declarative change 4
 - Watch the ReplicaSets and Pods pages in the dashboard to see how they change.
-  - **oo** You will find an error occurs because the cluster does not have enough resources to support that many instances.
-  - **oo** There are two ways to fix this: increase the size of your cluster or decrease the resources needed by the deployments.
+  -  You will find an error occurs because the cluster does not have enough resources to support that many instances.
+  -  There are two ways to fix this: increase the size of your cluster or decrease the resources needed by the deployments.
 - To fully deploy the application, you will need 4 instances of the API app running and 2 instances of the Web app.
-  - **oo**** Hint:** If you fixed the issue above correctly, you should be able to do this with the resources of your original cluster.
+  - ** Hint:** If you fixed the issue above correctly, you should be able to do this with the resources of your original cluster.
 - When your cluster is fully deployed, browse to the &quot;/stats.html&quot; page of the web application.
-  - **oo** Keep refreshing to see the API app&#39;s host name keep changing between the deployed instances.
+  -  Keep refreshing to see the API app&#39;s host name keep changing between the deployed instances.
 - Scale the API app back down to 1, and immediately keep refreshing the &quot;/stats.html&quot; page.
-  - **oo** You will notice that without any downtime it now directs traffic only to the single instance left.
+  -  You will notice that without any downtime it now directs traffic only to the single instance left.
 
 # Challenge Set 5: Deploy MongoDB to AKS
 
-## Challenges:
+### Challenges:
 
 - Deploy a MongoDB container in a pod for v2 of the FabMedical app
 - **Hint:** Check out the Docker Hub container registry and see what you can find.
@@ -129,43 +129,43 @@
 
 # Challenge Set 6: Updates and Rollbacks
 
-## Challenges:
+### Challenges:
 
 - You can use the steps from challenge one to build and push v2 images to your ACR or use the staged updated versions of the apps on Docker Hub with id and version:
-  - **oo**** For building in ACR:**
+  - ** For building in ACR:**
     - [Content API v2](https://github.com/evillgenius75/fabmedicalapp/tree/master/content-api-v2)
     - [Content Web v2](https://github.com/evillgenius75/fabmedicalapp/tree/master/content-web-v2)
-  - **oo**** Docker hub**
+  - ** Docker hub**
     - whatthehackmsft/content-web:v2
     - whatthehackmsft/content-api:v2
 - Perform a rolling update of the Web app on your cluster to the new version two of content-web
-  - **oo** You&#39;ll be doing this from the command-line with a kubectl command (remember, Kubernetes docs are your friend!)
-  - **oo** In the Kubernetes dashboard on the Pods page, you should be able to see new pods with the new version come online and the old pods terminate
+  -  You&#39;ll be doing this from the command-line with a kubectl command (remember, Kubernetes docs are your friend!)
+  -  In the Kubernetes dashboard on the Pods page, you should be able to see new pods with the new version come online and the old pods terminate
     - You can also do this by listing the pods with kubectl.
-  - **oo** At the same time, hit the front page to see when you&#39;re on the new version by refreshing constantly until you see the conference dates updated to 2019.
+  -  At the same time, hit the front page to see when you&#39;re on the new version by refreshing constantly until you see the conference dates updated to 2019.
 - Now roll back this update.
-  - **oo** Again, this is done from the command-line using a (different) kubectl command.
-  - **oo** Confirm that we are back to the original version of the app by checking that the conference dates are back to 2017.
+  -  Again, this is done from the command-line using a (different) kubectl command.
+  -  Confirm that we are back to the original version of the app by checking that the conference dates are back to 2017.
 - Perform the update again, this time using the blue/green deployment methodology.
-  - **oo** You will need a separate deployment file using different tags.
-  - **oo** Cut over is done by modifying the app&#39;s service to point to this new deployment.
+  -  You will need a separate deployment file using different tags.
+  -  Cut over is done by modifying the app&#39;s service to point to this new deployment.
 
 # Challenge Set 7: Storage
 
-## Challenges:
+### Challenges:
 
 - Make sure that you are using the latest version of the Fabmedical container images:
-  - **oo**** whatthehackmsft ****/content-api:v2**
-  - **oo**** whatthehackmsft ****/content-web:v2**
+  - ** whatthehackmsft ****/content-api:v2**
+  - ** whatthehackmsft ****/content-web:v2**
 - Destroy the previous MongoDB pod created in the Challenge Set 6.
 - In this challenge you will provision the MongoDB pod with a persisted disk volume.
 - Create two Azure data disks (one for the MongoDB configuration and another one for data)
 - Create a deployment yaml for MongoDB to be deployed with the necessary configuration for using the volume as an Azure Data Disk.
-  - **oo** Find the reference template in the Teams Files section: **tempate-mongodb-deploy.yml**
-  - **oo**** NOTE**: You can use the same MongoDB container image from Docker Hub that you used in a previous challenge.
+  -  Find the reference template in the Teams Files section: **tempate-mongodb-deploy.yml**
+  - ** NOTE**: You can use the same MongoDB container image from Docker Hub that you used in a previous challenge.
 - Verify that MongoDB is working fine by connecting to the corresponding MongoDB Pod in the interactive mode. Make sure that the disks are associated correctly (Highlighted below)
 
-- **oo**** kubectl exec -it \&lt;mongo-db pod name\&gt; bash**
+- ** kubectl exec -it \&lt;mongo-db pod name\&gt; bash**
 
 root@mongo-db678745655b-f82vj:/# **df -Th**
 Filesystem     Type     Size  Used Avail Use% Mounted on
@@ -179,14 +179,14 @@ shm            tmpfs     64M     0   64M   0% /dev/shm
 tmpfs          tmpfs    1.7G   12K  1.7G   1% /run/secrets/kubernetes.io/serviceaccount
 tmpfs          tmpfs    1.7G     0  1.7G   0% /sys/firmware
 
-- **oo** root@mongo-db678745655b-f82vj:/# **mongo --version**
+-  root@mongo-db678745655b-f82vj:/# **mongo --version**
 MongoDB shell version v3.6.1
 connecting to: mongodb://127.0.0.1:27017
 MongoDB server version: 3.6.1
 
 - Initialize sample content (Speakers &amp; Sessions data) in the mongo DB by running the content\_init nodeJS application as a Kubernetes Job. Reference template is can be found in the Files area in Teams, called: **template-content-init-deploy.yml**
-  - **oo** Logs for content-init will provide the detailed logs showing whether it was able to successfully connect and add the contents to the MongoDB. You can use the Kubernetes dashboard or kubectl to check the logs.
-  - **oo**** NOTE**: If the AKS cluster was created using the default Service Principle then we must grant it permission to pull images from the ACR.
+  -  Logs for content-init will provide the detailed logs showing whether it was able to successfully connect and add the contents to the MongoDB. You can use the Kubernetes dashboard or kubectl to check the logs.
+  - ** NOTE**: If the AKS cluster was created using the default Service Principle then we must grant it permission to pull images from the ACR.
     - **Hint** : Have a look here: [https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-aks](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-aks))
 
 - Make sure that the &quot;contentdb&quot; database is populated by connecting to the MongoDB pod with an interactive terminal and verify the database collections.
@@ -203,21 +203,21 @@ contentdb   0.000GB
 local       0.000GB
 
 - Destroy the MongoDB pod to prove that the data persisting to the disk
-  - **oo**** kubectl delete deployment \&lt;mongo-db-deployment\&gt;**
+  - ** kubectl delete deployment \&lt;mongo-db-deployment\&gt;**
 - Recreate the Mongo Db Pod
-  - **oo**** kubectl **** apply **** -f \&lt;mongo-db-deployment\&gt;**
+  - ** kubectl **** apply **** -f \&lt;mongo-db-deployment\&gt;**
 - Once the Pod is created, verify that data is persisted to the Azure disks by following the previous MongoDB verification step.
 - Update the MongoDB connection string in the content-api deployment YAML and deploy it, eg:
-  - **oo** env:
+  -  env:
    - name: MONGODB\_CONNECTION
      value: mongodb://mongodb:27017/contentdb
 - Verify the API can retrieve the data by calling the speaker / session end points with curl:
-  - **oo** curl [http://localhost:3001/speakers](http://localhost:3001/speakers)
-  - **oo** curl [http://localhost:3001/sessions](http://localhost:3001/sessions)
+  -  curl [http://localhost:3001/speakers](http://localhost:3001/speakers)
+  -  curl [http://localhost:3001/sessions](http://localhost:3001/sessions)
 
 # Challenge Set 8: Helm
 
-## Challenges:
+### Challenges:
 
 - Fetch the script for installing Helm to the local machine where you will be using Helm
   - **curl https://raw.githubusercontent.com/helm/helm/master/scripts/get -o get\_helm.sh**
@@ -246,21 +246,21 @@ local       0.000GB
 
 # Challenge Set 9: Networking
 
-## Challenges:
+### Challenges:
 
 - Make sure that HTTP Application Routing on the AKS cluster is enabled.
 - Delete the existing content-web deployment and service.
 - Copy the AKS cluster DNS host name from Azure Portal
 - Deploy the content-web service and Ingress Controller using the HTTP Application Routing Add on feature.
-  - **oo** The reference template can be found in the Files section in Teams: template-web-ingress-deploy.
-  - **oo** Change the ACR &amp; AKS DNS Name to match yours.
+  -  The reference template can be found in the Files section in Teams: template-web-ingress-deploy.
+  -  Change the ACR &amp; AKS DNS Name to match yours.
 - Verify the DNS records are created, and if so, access the application using the DNS name, e.g http://fabmed.[YOUR\_AKS\_DNS\_ID].[REGION].aksapp.io
 
 \*\*\*BONUS: Use a Helm Chart to deploy nginx Ingress Controller in an HA configuration
 
 # Challenge Set 10: Operations and Monitoring
 
-## Challenges:
+### Challenges:
 
 - Find the logs for your application&#39;s containers
   - Using the Kubernetes Dashboard
