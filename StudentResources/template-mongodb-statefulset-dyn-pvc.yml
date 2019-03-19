@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb
+  labels:
+    name: mongodb
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 27017
+    targetPort: 27017
+  selector:
+    app: mongo-db
+---
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: mongo-db
+spec:
+  serviceName: mongodb
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo-db
+  template:
+    metadata:
+      labels:
+        app: mongo-db
+    spec:
+      containers:
+      - name: mongodb-pod
+        image: mongo:3.4-jessie
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+          - name: mongo-vol
+            mountPath: /data/db
+  volumeClaimTemplates:
+    - metadata:
+        name: mongo-vol
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: managed-premium
+        resources:
+          requests:
+            storage: 1024M
+          
