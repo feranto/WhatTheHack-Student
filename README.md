@@ -1,6 +1,6 @@
 # What The Hack – Student&#39;s Guide
 
-# Challenge Set 0: Pre-requisites - Ready, Set, GO!
+## Challenge Set 0: Pre-requisites - Ready, Set, GO!
 
 ### Challenges:
 
