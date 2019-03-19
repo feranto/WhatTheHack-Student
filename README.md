@@ -125,7 +125,7 @@
   - **whatthehackmsft/content-init**
   - Use the content-init "Job" yaml provided to run the initialization of MongoDB for our new version of the app.
 
-\*\*\*Bonus: Try to deploy MongoDB as a StatefulSet instead of a standard Deployment
+**Bonus: Try to deploy MongoDB as a StatefulSet instead of a standard Deployment**
 
 # Challenge Set 6: Updates and Rollbacks
 
